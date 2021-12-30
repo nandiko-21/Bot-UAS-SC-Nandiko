@@ -7,25 +7,25 @@ const model = require('./sdk/model.js'); //predict
 
 // Bot Setting
 const TelegramBot = require('node-telegram-bot-api');
-const token = '5057562264:AAHLUz5s6G-8vDMtapgD6l1Y4Z2i5su7OlM'
+const token = '5076048315:AAHYZgT4yR6_OiCiQB62e9z5--HXhnUkmNQ'
 const bot = new TelegramBot(token, {polling: true});
 
 state=0;
-// main menu bot
+// Main Menu Bot
 bot.onText(/\/start/, (msg) => { 
     console.log(msg)
     bot.sendMessage(
         msg.chat.id,
-        `hello ${msg.chat.first_name}, welcome...\n
+        `Hello ${msg.chat.first_name}, Welcome to Bot-UAS-SC-Nandiko...\n
         click /predict`
     );  
 });
 
-// input I dan r
+// input requires x1, x2, and x3
 bot.onText(/\/predict/, (msg) => { 
     bot.sendMessage(
         msg.chat.id,
-        `masukan nilai x1|x2|x3 contoh 9|9|3`
+        `Masukkan nilai x1|x2|x3 , contohnya 27|91|153`
     );   
     state = 1;
 });
