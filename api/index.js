@@ -32,33 +32,46 @@ bot.onText(/\/predict/, (msg) => {
 
 bot.on('message',(msg) =>{
     if(state == 1){
-    s= msg.text.split("|");
-    x1 = s[0]
-    x2 = s[1]
-    x3 = s[2]  
-     model.predict(
-[
-    parseFloat(s[0]), // string to float
-    parseFloat(s[1]),
-    parseFloat(s[2])
-]
-).then((jres)=>{
-    bot.sendMessage(
-         msg.chat.id,
-         `nilai x1 yang diprediksi adalah ${jres[0]} x1`
+        s= msg.text.split("|");
+        x1 = s[0]
+        x2 = s[1]
+        x3 = s[2]  
+        model.predict(
+            [
+                parseFloat(s[0]), // string to float
+                parseFloat(s[1]),
+                parseFloat(s[2])
+            ]
+        ).then((jres)=>{
+            bot.sendMessage(
+                msg.chat.id,
+                `Nilai y1 yang diprediksi adalah ${jres[0]}`
             );
-    bot.sendMessage(
-         msg.chat.id,
-          `nilai x2 yang diprediksi adalah ${jres[1]} x2`
+            bot.sendMessage(
+                msg.chat.id,
+                `Nilai y2 yang diprediksi adalah ${jres[1]}`
             );
-     bot.sendMessage(
-         msg.chat.id,
-         `nilai x3 yang diprediksi adalah ${jres[2]} x3`
+            bot.sendMessage(
+                msg.chat.id,
+                `Nilai y3 yang diprediksi adalah ${jres[2]}`
             );
-   })
-}else{
-state = 0;
+        })
+    }else{
+        state = 0;
     }
 })
+
+// routers
+r.get('/predict/:x1/:x2/:x3', function(req, res, next) {    
+    model.predict(
+        [
+            parseFloat(req.params.x1), // string to float
+            parseFloat(req.params.x2),
+            parseFloat(req.params.x3)
+        ]
+    ).then((jres)=>{
+        res.json(jres);
+    })
+});
 
 module.exports = r;
