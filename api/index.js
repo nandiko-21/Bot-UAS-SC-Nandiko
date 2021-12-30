@@ -10,7 +10,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '5076048315:AAHYZgT4yR6_OiCiQB62e9z5--HXhnUkmNQ'
 const bot = new TelegramBot(token, {polling: true});
 
-state=0;
+
 // Main Menu Bot
 bot.onText(/\/start/, (msg) => { 
     bot.sendMessage(
@@ -18,7 +18,7 @@ bot.onText(/\/start/, (msg) => {
         `Hello ${msg.chat.first_name}, Welcome to Bot-UAS-SC-Nandiko...\n
         click /predict`
     );  
-    state = 0;
+    
 });
 
 // input requires x1, x2, and x3
@@ -62,6 +62,7 @@ bot.on('message',(msg) =>{
         msg.chat.id,
             `Please click /start`
         );
+        
     }
 })
 
