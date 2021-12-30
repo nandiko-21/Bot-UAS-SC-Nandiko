@@ -18,7 +18,7 @@ bot.onText(/\/start/, (msg) => {
         `Hello ${msg.chat.first_name}, Welcome to Bot-UAS-SC-Nandiko...\n
         click /predict`
     );  
-    
+    state = 0;
 });
 
 // input requires x1, x2, and x3
